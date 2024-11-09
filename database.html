@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Database Handling</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>Database Handling in PHP</h2>
+
+  <section>
+    <h3>What is Database Handling?</h3>
+    <p>Database handling in PHP refers to interacting with a database using SQL queries to retrieve, insert, update, and delete data. PHP provides several ways to interact with databases, with MySQL being one of the most popular databases for use with PHP.</p>
+  </section>
+
+  <section>
+    <h3>1. Connecting to a MySQL Database</h3>
+    <p>To interact with a MySQL database in PHP, we need to establish a connection using the <code>mysqli_connect()</code> function. This function requires the hostname, username, password, and database name.</p>
+    <pre><code>&lt;?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "test_db";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully!";
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>mysqli_connect()</code> function is used to connect to the database. If the connection fails, an error message is displayed using <code>mysqli_connect_error()</code>.</p>
+  </section>
+
+  <section>
+    <h3>2. Performing SQL Queries</h3>
+    <p>Once connected, you can perform SQL queries to interact with the database. Below are examples of how to execute different types of queries.</p>
+
+    <h4>2.1. Running a SELECT Query (Read Data)</h4>
+    <p>The <code>SELECT</code> query retrieves data from a table in the database. You can fetch the result using <code>mysqli_query()</code> and <code>mysqli_fetch_assoc()</code> functions.</p>
+    <pre><code>&lt;?php
+$sql = "SELECT id, name, email FROM users";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "ID: " . $row["id"]. " - Name: " . $row["name"]. " - Email: " . $row["email"]. "&lt;br&gt;";
+    }
+} else {
+    echo "No results found.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>mysqli_query()</code> function runs the SQL query, and <code>mysqli_fetch_assoc()</code> fetches the results as an associative array.</p>
+
+    <h4>2.2. Running an INSERT Query (Insert Data)</h4>
+    <p>The <code>INSERT</code> query adds data to a table. The <code>mysqli_query()</code> function is used to execute the query.</p>
+    <pre><code>&lt;?php
+$sql = "INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com')";
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully.";
+} else {
+    echo "Error: " . $sql . "&lt;br&gt;" . mysqli_error($conn);
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> This query inserts a new user into the "users" table. The <code>mysqli_query()</code> function executes the query, and if successful, it returns true.</p>
+
+    <h4>2.3. Running an UPDATE Query (Update Data)</h4>
+    <p>The <code>UPDATE</code> query is used to modify existing data in the database.</p>
+    <pre><code>&lt;?php
+$sql = "UPDATE users SET email='jane@example.com' WHERE id=1";
+if (mysqli_query($conn, $sql)) {
+    echo "Record updated successfully.";
+} else {
+    echo "Error: " . $sql . "&lt;br&gt;" . mysqli_error($conn);
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> This query updates the email address of the user with <code>id = 1</code> in the "users" table.</p>
+
+    <h4>2.4. Running a DELETE Query (Delete Data)</h4>
+    <p>The <code>DELETE</code> query removes data from a table.</p>
+    <pre><code>&lt;?php
+$sql = "DELETE FROM users WHERE id=1";
+if (mysqli_query($conn, $sql)) {
+    echo "Record deleted successfully.";
+} else {
+    echo "Error: " . $sql . "&lt;br&gt;" . mysqli_error($conn);
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> This query deletes the user with <code>id = 1</code> from the "users" table.</p>
+  </section>
+
+  <section>
+    <h3>3. Closing the Database Connection</h3>
+    <p>After finishing database operations, it's important to close the connection to the database using the <code>mysqli_close()</code> function.</p>
+    <pre><code>&lt;?php
+mysqli_close($conn); // Close the connection
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>mysqli_close()</code> function closes the database connection to free up resources.</p>
+  </section>
+
+  <section>
+    <h3>4. Handling Errors</h3>
+    <p>To handle errors during database operations, you can use the <code>mysqli_error()</code> function to retrieve detailed error messages.</p>
+    <pre><code>&lt;?php
+$sql = "SELECT * FROM non_existing_table";
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    echo "Error: " . mysqli_error($conn);
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> If an error occurs during the query execution (such as trying to select from a non-existing table), <code>mysqli_error()</code> will provide the error message.</p>
+  </section>
+
+  <section>
+    <h3>5. Using Prepared Statements (for Security)</h3>
+    <p>Prepared statements are used to protect against SQL injection attacks by separating SQL logic from user input.</p>
+
+    <h4>5.1. Using Prepared Statements with SELECT Query</h4>
+    <pre><code>&lt;?php
+$stmt = $conn->prepare("SELECT id, name, email FROM users WHERE email = ?");
+$stmt->bind_param("s", $email);
+$email = "john@example.com";
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - Email: " . $row["email"] . "&lt;br&gt;";
+    }
+} else {
+    echo "No results found.";
+}
+$stmt->close();
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> In this example, a prepared statement is used to safely execute a <code>SELECT</code> query, with <code>bind_param()</code> used to bind the user-provided email to the query.</p>
+
+    <h4>5.2. Using Prepared Statements with INSERT Query</h4>
+    <pre><code>&lt;?php
+$stmt = $conn->prepare("INSERT INTO users (name, email) VALUES (?, ?)");
+$stmt->bind_param("ss", $name, $email);
+$name = "John Doe";
+$email = "john@example.com";
+$stmt->execute();
+
+echo "New record created successfully.";
+$stmt->close();
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> Prepared statements ensure that user input is safely inserted into the database, preventing SQL injection attacks. The <code>bind_param()</code> function binds user-provided values to the query.</p>
+  </section>
+
+</body>
+</html>

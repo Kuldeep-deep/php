@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Sessions & Cookies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>Sessions & Cookies in PHP</h2>
+
+  <section>
+    <h3>What are Sessions?</h3>
+    <p>Sessions in PHP allow you to store information (variables) to be used across multiple pages. Unlike cookies, which store data on the client side, session data is stored on the server, making it more secure. A session is started using the <code>session_start()</code> function.</p>
+  </section>
+
+  <section>
+    <h3>1. Starting a Session</h3>
+    <p>To use sessions in PHP, you must call the <code>session_start()</code> function at the beginning of each page that needs access to session data. This function must be called before any HTML or output is sent to the browser.</p>
+    <pre><code>&lt;?php
+session_start(); // Start a session
+
+// Store session data
+$_SESSION["user"] = "John Doe";
+$_SESSION["email"] = "john@example.com";
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>$_SESSION</code> superglobal is used to store session data. The session data persists across different pages until the session is destroyed or expired.</p>
+  </section>
+
+  <section>
+    <h3>2. Accessing Session Data</h3>
+    <p>Once a session is started, you can access the session data on any page by using the <code>$_SESSION</code> superglobal array.</p>
+    <pre><code>&lt;?php
+session_start(); // Start the session
+
+// Access session data
+echo "User: " . $_SESSION["user"];
+echo "&lt;br&gt;Email: " . $_SESSION["email"];
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> In this example, the session data stored earlier is retrieved and displayed on the page.</p>
+  </section>
+
+  <section>
+    <h3>3. Modifying Session Data</h3>
+    <p>You can modify the session data by simply reassigning values to the <code>$_SESSION</code> superglobal.</p>
+    <pre><code>&lt;?php
+session_start(); // Start the session
+
+// Modify session data
+$_SESSION["user"] = "Jane Smith"; // Change user name
+echo "Updated User: " . $_SESSION["user"];
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> In this example, the session variable <code>$_SESSION["user"]</code> is updated with a new value.</p>
+  </section>
+
+  <section>
+    <h3>4. Destroying a Session</h3>
+    <p>You can destroy all session data using the <code>session_destroy()</code> function. This will delete all the session variables and close the session. However, the session cookie may remain in the browser until it expires.</p>
+    <pre><code>&lt;?php
+session_start(); // Start the session
+
+// Destroy all session data
+session_unset(); // Remove all session variables
+session_destroy(); // Destroy the session
+
+echo "Session has been destroyed.";
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>session_unset()</code> function clears all session variables, and <code>session_destroy()</code> ends the session. This ensures that session data is no longer accessible.</p>
+  </section>
+
+  <section>
+    <h3>What are Cookies?</h3>
+    <p>Cookies are small pieces of data that are stored on the user's computer by the web browser. Cookies can store data such as user preferences, authentication tokens, or other state information. Cookies are sent to the server with every request to the same domain.</p>
+  </section>
+
+  <section>
+    <h3>5. Setting a Cookie</h3>
+    <p>To set a cookie in PHP, use the <code>setcookie()</code> function. This function requires the name of the cookie, its value, and an expiration time. The cookie will be available to all pages on the domain that set it.</p>
+    <pre><code>&lt;?php
+// Set a cookie for 30 days
+setcookie("username", "JohnDoe", time() + 30 * 24 * 60 * 60); // Expire in 30 days
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>setcookie()</code> function sets a cookie named "username" with the value "JohnDoe". The expiration time is set to 30 days from the current time.</p>
+  </section>
+
+  <section>
+    <h3>6. Accessing Cookie Data</h3>
+    <p>To access a cookie value, use the <code>$_COOKIE</code> superglobal. Keep in mind that cookies are only available after the page is reloaded (because they are sent with the HTTP request after being set).</p>
+    <pre><code>&lt;?php
+if(isset($_COOKIE["username"])) {
+    echo "Welcome back, " . $_COOKIE["username"];
+} else {
+    echo "Cookie not set.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> This code checks if the "username" cookie is set and then displays its value. If the cookie is not set, a message is displayed.</p>
+  </section>
+
+  <section>
+    <h3>7. Modifying a Cookie</h3>
+    <p>To modify a cookie, you simply set a new value for it using <code>setcookie()</code> with the same name and a new expiration time.</p>
+    <pre><code>&lt;?php
+// Modify the cookie value
+setcookie("username", "JaneDoe", time() + 30 * 24 * 60 * 60); // New value for 30 days
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> Here, the "username" cookie is updated with a new value ("JaneDoe") and the same expiration time (30 days).</p>
+  </section>
+
+  <section>
+    <h3>8. Deleting a Cookie</h3>
+    <p>To delete a cookie, set its expiration time to a time in the past. The browser will automatically remove the cookie when it detects the expiration date has passed.</p>
+    <pre><code>&lt;?php
+// Delete the cookie by setting its expiration time to a past date
+setcookie("username", "", time() - 3600); // Expire in the past (1 hour ago)
+echo "Cookie has been deleted.";
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> By setting the cookie's expiration time to a past date, the browser will remove the cookie on the next page load.</p>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Cookies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>Working with Cookies in PHP</h2>
+
+  <section>
+    <h3>What are Cookies?</h3>
+    <p>Cookies are small pieces of data stored on the user's computer by the browser. They can be used to store user preferences, login sessions, and other small bits of information across multiple pages. Cookies are sent back to the server with every HTTP request to the same domain that set the cookie.</p>
+  </section>
+
+  <section>
+    <h3>1. Setting a Cookie</h3>
+    <p>To set a cookie in PHP, use the <code>setcookie()</code> function. The function takes at least three parameters: the name of the cookie, its value, and its expiration time.</p>
+    <pre><code>&lt;?php
+// Set a cookie named "user" with the value "JohnDoe" for 30 days
+setcookie("user", "JohnDoe", time() + 30 * 24 * 60 * 60); // Expires in 30 days
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>setcookie()</code> function sets a cookie named "user" with the value "JohnDoe". The cookie will expire in 30 days (specified by the time parameter).</p>
+  </section>
+
+  <section>
+    <h3>2. Accessing a Cookie</h3>
+    <p>After setting a cookie, you can access its value on any subsequent page using the <code>$_COOKIE</code> superglobal array. Keep in mind that cookies are sent to the server with each HTTP request, so they will be available only after the page is refreshed.</p>
+    <pre><code>&lt;?php
+if(isset($_COOKIE["user"])) {
+    echo "Welcome back, " . $_COOKIE["user"];
+} else {
+    echo "No user cookie set.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>$_COOKIE</code> superglobal is used to retrieve the value of a cookie. In this example, the "user" cookie's value is displayed if it is set.</p>
+  </section>
+
+  <section>
+    <h3>3. Modifying a Cookie</h3>
+    <p>You can modify the value of an existing cookie by setting a new value for it with the same name. You can also adjust the expiration time as needed.</p>
+    <pre><code>&lt;?php
+// Modify the "user" cookie's value to "JaneDoe" and reset the expiration to 30 days from now
+setcookie("user", "JaneDoe", time() + 30 * 24 * 60 * 60); // Expires in 30 days
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The cookie's value is updated to "JaneDoe" with a new expiration time. The updated cookie will be sent with the next HTTP request.</p>
+  </section>
+
+  <section>
+    <h3>4. Deleting a Cookie</h3>
+    <p>To delete a cookie, set its expiration date to a time in the past. This will instruct the browser to remove the cookie.</p>
+    <pre><code>&lt;?php
+// Delete the "user" cookie by setting its expiration to one hour ago
+setcookie("user", "", time() - 3600); // Expire in the past (1 hour ago)
+echo "Cookie has been deleted.";
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> To delete a cookie, set the expiration time to a value in the past (e.g., 1 hour ago). The browser will remove the cookie on the next page load.</p>
+  </section>
+
+  <section>
+    <h3>5. Using Secure and HttpOnly Cookies</h3>
+    <p>For enhanced security, cookies can be set with the <code>Secure</code> and <code>HttpOnly</code> flags. The <code>Secure</code> flag ensures the cookie is only sent over HTTPS connections, while the <code>HttpOnly</code> flag prevents client-side access to the cookie using JavaScript.</p>
+    <pre><code>&lt;?php
+// Set a secure cookie that can only be transmitted over HTTPS
+setcookie("secure_user", "JohnDoe", time() + 30 * 24 * 60 * 60, "/", "", true, true); // Secure and HttpOnly
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> In this example, the cookie "secure_user" is set with the <code>Secure</code> and <code>HttpOnly</code> flags. This ensures the cookie can only be transmitted securely and cannot be accessed by JavaScript.</p>
+  </section>
+
+  <section>
+    <h3>6. Cookie Path and Domain</h3>
+    <p>The <code>path</code> and <code>domain</code> parameters of the <code>setcookie()</code> function define the scope of the cookie. The cookie will only be available for the specified path and domain.</p>
+    <pre><code>&lt;?php
+// Set a cookie for the entire domain ("/") with a specific path
+setcookie("user", "JohnDoe", time() + 30 * 24 * 60 * 60, "/path/to/dir"); // Available only within the "/path/to/dir" directory
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> By setting the <code>path</code> parameter, the cookie will only be available to pages within the specified directory.</p>
+  </section>
+
+  <section>
+    <h3>7. Cookie Expiration Time</h3>
+    <p>The expiration time of a cookie is set in seconds, relative to the current time. For example, to set a cookie to expire in 30 days, you would use the <code>time() + 30 * 24 * 60 * 60</code> formula.</p>
+    <pre><code>&lt;?php
+// Set a cookie to expire in 30 days
+setcookie("user", "JohnDoe", time() + 30 * 24 * 60 * 60); // Expires in 30 days
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The expiration time is calculated by adding 30 days (in seconds) to the current time using the <code>time()</code> function.</p>
+  </section>
+
+  <section>
+    <h3>8. Checking if a Cookie Exists</h3>
+    <p>To check if a cookie exists, use the <code>isset()</code> function with the <code>$_COOKIE</code> superglobal. If the cookie is set, you can retrieve its value.</p>
+    <pre><code>&lt;?php
+if (isset($_COOKIE["user"])) {
+    echo "Cookie 'user' is set. Value: " . $_COOKIE["user"];
+} else {
+    echo "Cookie 'user' is not set.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>isset()</code> function checks if the cookie is set. If it is, the cookie's value is displayed; otherwise, a message is shown indicating that the cookie is not set.</p>
+  </section>
+
+</body>
+</html>

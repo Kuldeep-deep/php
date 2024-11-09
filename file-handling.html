@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP File Handling</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>File Handling in PHP</h2>
+
+  <section>
+    <h3>What is File Handling?</h3>
+    <p>File handling in PHP allows you to read from, write to, and manipulate files on the server. You can use PHP to open files, write data to them, read their contents, and even delete or rename files.</p>
+  </section>
+
+  <section>
+    <h3>1. Opening Files</h3>
+    <p>To open a file in PHP, you can use the <code>fopen()</code> function. It takes two arguments: the file path and the mode. The mode determines how you interact with the file (e.g., read, write, append).</p>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "r"); // Open file for reading
+if ($file) {
+    echo "File opened successfully.";
+    fclose($file); // Close the file after usage
+} else {
+    echo "Failed to open the file.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>fopen()</code> function opens the file "example.txt" in read mode ("r"). If successful, it returns a file pointer; otherwise, it returns <code>false</code>.</p>
+  </section>
+
+  <section>
+    <h3>2. Reading from Files</h3>
+    <p>Once a file is opened, you can read its contents using functions like <code>fread()</code>, <code>fgets()</code>, or <code>file_get_contents()</code>.</p>
+
+    <h4>Reading a File Line by Line</h4>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "r");
+if ($file) {
+    while ($line = fgets($file)) {
+        echo $line . "&lt;br&gt;"; // Print each line
+    }
+    fclose($file);
+} else {
+    echo "Failed to open the file.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>fgets()</code> function reads a single line from the file at a time. The loop continues until the end of the file.</p>
+
+    <h4>Reading the Entire File</h4>
+    <pre><code>&lt;?php
+$content = file_get_contents("example.txt"); // Read entire file into a string
+echo $content;
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>file_get_contents()</code> function reads the entire file into a string, which can then be displayed or processed.</p>
+  </section>
+
+  <section>
+    <h3>3. Writing to Files</h3>
+    <p>You can write data to a file using the <code>fwrite()</code> function. The <code>fopen()</code> function should be used in write ("w") or append ("a") mode to open the file for writing.</p>
+
+    <h4>Writing Data to a File</h4>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "w"); // Open file for writing (overwrites existing content)
+if ($file) {
+    fwrite($file, "Hello, World!"); // Write to the file
+    fclose($file);
+    echo "Data written to the file.";
+} else {
+    echo "Failed to open the file.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>fwrite()</code> function writes the string "Hello, World!" to the file "example.txt". If the file does not exist, it will be created. Note that opening the file in write mode ("w") will overwrite existing data.</p>
+
+    <h4>Appending Data to a File</h4>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "a"); // Open file for appending
+if ($file) {
+    fwrite($file, "\nAppended text."); // Append text to the file
+    fclose($file);
+    echo "Data appended to the file.";
+} else {
+    echo "Failed to open the file.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> In append mode ("a"), data is added to the end of the file without overwriting existing content.</p>
+  </section>
+
+  <section>
+    <h3>4. File Upload</h3>
+    <p>PHP allows users to upload files to the server via a form. The file is uploaded through the <code>$_FILES</code> superglobal.</p>
+
+    <h4>HTML Form for File Upload</h4>
+    <pre><code>&lt;form method="POST" enctype="multipart/form-data"&gt;
+    &lt;label for="file"&gt;Choose a file to upload:&lt;/label&gt;
+    &lt;input type="file" id="file" name="file" required&gt;&lt;br&gt;
+    &lt;input type="submit" value="Upload File"&gt;
+    &lt;/form&gt;
+</code></pre>
+
+    <h4>PHP Script to Handle File Upload</h4>
+    <pre><code>&lt;?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $targetDirectory = "uploads/";
+    $targetFile = $targetDirectory . basename($_FILES["file"]["name"]);
+
+    // Check if the file is a valid upload
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
+        echo "The file " . basename($_FILES["file"]["name"]) . " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> This script uploads the file to the "uploads" directory. The <code>move_uploaded_file()</code> function moves the uploaded file from its temporary location to the target directory.</p>
+  </section>
+
+  <section>
+    <h3>5. Closing Files</h3>
+    <p>After performing operations on a file, it's important to close the file using the <code>fclose()</code> function. This frees up resources and ensures that the file is properly saved.</p>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "r");
+if ($file) {
+    // Perform operations on the file...
+    fclose($file); // Close the file when done
+} else {
+    echo "Failed to open the file.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>fclose()</code> function is used to close the file after reading or writing to it. This is good practice to prevent memory leaks and file locks.</p>
+  </section>
+
+  <section>
+    <h3>6. Deleting and Renaming Files</h3>
+    <p>You can delete a file using the <code>unlink()</code> function and rename it using <code>rename()</code>.</p>
+
+    <h4>Deleting a File</h4>
+    <pre><code>&lt;?php
+if (unlink("example.txt")) {
+    echo "The file has been deleted.";
+} else {
+    echo "Error deleting the file.";
+}
+?&gt;
+</code></pre>
+
+    <h4>Renaming a File</h4>
+    <pre><code>&lt;?php
+if (rename("oldfile.txt", "newfile.txt")) {
+    echo "The file has been renamed.";
+} else {
+    echo "Error renaming the file.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>unlink()</code> function deletes a file, and <code>rename()</code> changes a file's name.</p>
+  </section>
+
+</body>
+</html>

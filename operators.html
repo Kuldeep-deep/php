@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Operators</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>Operators in PHP</h2>
+
+  <section>
+    <h3>What are Operators?</h3>
+    <p>Operators in PHP are symbols that perform operations on variables and values. PHP supports several types of operators to handle different types of operations, including arithmetic, assignment, comparison, logical, and string operations.</p>
+  </section>
+
+  <section>
+    <h3>1. Arithmetic Operators</h3>
+    <p>Arithmetic operators are used to perform basic math operations, such as addition, subtraction, multiplication, and division.</p>
+    <table>
+      <tr><th>Operator</th><th>Description</th><th>Example</th></tr>
+      <tr><td>+</td><td>Addition</td><td><code>$x + $y</code></td></tr>
+      <tr><td>-</td><td>Subtraction</td><td><code>$x - $y</code></td></tr>
+      <tr><td>*</td><td>Multiplication</td><td><code>$x * $y</code></td></tr>
+      <tr><td>/</td><td>Division</td><td><code>$x / $y</code></td></tr>
+      <tr><td>%</td><td>Modulus</td><td><code>$x % $y</code></td></tr>
+    </table>
+    <pre><code>&lt;?php
+$x = 10;
+$y = 3;
+echo $x + $y; // Outputs 13
+?&gt;
+</code></pre>
+  </section>
+
+  <section>
+    <h3>2. Assignment Operators</h3>
+    <p>Assignment operators are used to assign values to variables. The basic assignment operator is <code>=</code>, but there are also compound assignment operators that perform arithmetic operations as they assign.</p>
+    <table>
+      <tr><th>Operator</th><th>Description</th><th>Example</th></tr>
+      <tr><td>=</td><td>Basic assignment</td><td><code>$x = $y</code></td></tr>
+      <tr><td>+=</td><td>Add and assign</td><td><code>$x += $y</code></td></tr>
+      <tr><td>-=</td><td>Subtract and assign</td><td><code>$x -= $y</code></td></tr>
+      <tr><td>*=</td><td>Multiply and assign</td><td><code>$x *= $y</code></td></tr>
+      <tr><td>/=</td><td>Divide and assign</td><td><code>$x /= $y</code></td></tr>
+    </table>
+    <pre><code>&lt;?php
+$x = 5;
+$x += 10; // Equivalent to $x = $x + 10;
+echo $x; // Outputs 15
+?&gt;
+</code></pre>
+  </section>
+
+  <section>
+    <h3>3. Comparison Operators</h3>
+    <p>Comparison operators are used to compare two values, resulting in a Boolean value (<code>true</code> or <code>false</code>).</p>
+    <table>
+      <tr><th>Operator</th><th>Description</th><th>Example</th></tr>
+      <tr><td>==</td><td>Equal</td><td><code>$x == $y</code></td></tr>
+      <tr><td>!=</td><td>Not equal</td><td><code>$x != $y</code></td></tr>
+      <tr><td>===</td><td>Identical (same value and type)</td><td><code>$x === $y</code></td></tr>
+      <tr><td>!==</td><td>Not identical</td><td><code>$x !== $y</code></td></tr>
+      <tr><td>&gt;</td><td>Greater than</td><td><code>$x &gt; $y</code></td></tr>
+      <tr><td>&lt;</td><td>Less than</td><td><code>$x &lt; $y</code></td></tr>
+    </table>
+    <pre><code>&lt;?php
+$x = 10;
+$y = 20;
+echo $x &lt; $y; // Outputs 1 (true)
+?&gt;
+</code></pre>
+  </section>
+
+  <section>
+    <h3>4. Logical Operators</h3>
+    <p>Logical operators are used to combine multiple conditions.</p>
+    <table>
+      <tr><th>Operator</th><th>Description</th><th>Example</th></tr>
+      <tr><td>&&</td><td>And</td><td><code>$x && $y</code></td></tr>
+      <tr><td>||</td><td>Or</td><td><code>$x || $y</code></td></tr>
+      <tr><td>!</td><td>Not</td><td><code>!$x</code></td></tr>
+    </table>
+    <pre><code>&lt;?php
+$x = true;
+$y = false;
+echo $x && $y; // Outputs "" (false)
+?&gt;
+</code></pre>
+  </section>
+
+  <section>
+    <h3>5. String Operators</h3>
+    <p>String operators are used to manipulate text strings.</p>
+    <table>
+      <tr><th>Operator</th><th>Description</th><th>Example</th></tr>
+      <tr><td>.</td><td>Concatenation</td><td><code>$x . $y</code></td></tr>
+      <tr><td>.=</td><td>Concatenate and assign</td><td><code>$x .= $y</code></td></tr>
+    </table>
+    <pre><code>&lt;?php
+$firstName = "John";
+$lastName = "Doe";
+echo $firstName . " " . $lastName; // Outputs "John Doe"
+?&gt;
+</code></pre>
+  </section>
+
+</body>
+</html>

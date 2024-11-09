@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Functions</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>Functions in PHP</h2>
+
+  <section>
+    <h3>What are Functions?</h3>
+    <p>Functions in PHP allow you to group code into reusable blocks. A function performs a specific task and can be called multiple times throughout your script. Functions help make your code modular, reusable, and easier to maintain.</p>
+  </section>
+
+  <section>
+    <h3>1. Defining a Function</h3>
+    <p>A function in PHP is defined using the <code>function</code> keyword, followed by the function name and parentheses. Inside the function, you can place the code that will be executed when the function is called.</p>
+    <pre><code>&lt;?php
+function greet() {
+    echo "Hello, world!";
+}
+
+greet(); // Calls the function
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> Hello, world!</p>
+  </section>
+
+  <section>
+    <h3>2. Functions with Parameters</h3>
+    <p>You can define functions with parameters, allowing you to pass values to them when they are called. This allows for more dynamic behavior in your functions.</p>
+    <pre><code>&lt;?php
+function greet($name) {
+    echo "Hello, " . $name . "!";
+}
+
+greet("Alice"); // Passes "Alice" as an argument
+greet("Bob");   // Passes "Bob" as an argument
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Hello, Alice!<br>Hello, Bob!</p>
+  </section>
+
+  <section>
+    <h3>3. Returning Values from Functions</h3>
+    <p>A function can return a value to the caller using the <code>return</code> keyword. You can use this returned value for further processing or output.</p>
+    <pre><code>&lt;?php
+function add($a, $b) {
+    return $a + $b;
+}
+
+$result = add(5, 10); // Calls the function and stores the result in $result
+echo "The sum is: " . $result; // Outputs the result
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> The sum is: 15</p>
+  </section>
+
+  <section>
+    <h3>4. Default Arguments</h3>
+    <p>Functions can have default argument values. If an argument is not provided when the function is called, the default value is used.</p>
+    <pre><code>&lt;?php
+function greet($name = "Guest") {
+    echo "Hello, " . $name . "!";
+}
+
+greet();      // Uses the default value "Guest"
+greet("Alice"); // Uses the passed value "Alice"
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Hello, Guest!<br>Hello, Alice!</p>
+  </section>
+
+  <section>
+    <h3>5. Variable Scope in Functions</h3>
+    <p>Variables declared inside a function are local to that function and cannot be accessed outside of it. However, you can access global variables using the <code>global</code> keyword or by passing them as arguments.</p>
+    <pre><code>&lt;?php
+$globalVar = "I am global";
+
+function testScope() {
+    global $globalVar; // Access global variable
+    echo $globalVar; // Outputs "I am global"
+}
+
+testScope();
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> I am global</p>
+  </section>
+
+  <section>
+    <h3>6. Built-in PHP Functions</h3>
+    <p>PHP has many built-in functions for common tasks. You can use them without defining your own. For example, the <code>strlen()</code> function returns the length of a string.</p>
+    <pre><code>&lt;?php
+$string = "Hello, PHP!";
+echo "String length: " . strlen($string); // Outputs the length of the string
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> String length: 12</p>
+  </section>
+
+  <section>
+    <h3>7. Anonymous Functions (Closures)</h3>
+    <p>PHP also supports anonymous functions, which are functions without a name. These functions can be assigned to variables or passed as arguments.</p>
+    <pre><code>&lt;?php
+$sum = function($a, $b) {
+    return $a + $b;
+};
+
+echo $sum(3, 4); // Calls the anonymous function
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> 7</p>
+  </section>
+
+</body>
+</html>

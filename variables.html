@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables & Data Types in PHP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>Variables & Data Types in PHP</h2>
+
+  <section>
+    <h3>What is a Variable?</h3>
+    <p>In PHP, a variable is a storage location that holds a value, which can be changed during the script execution. All variables in PHP start with a <code>$</code> symbol followed by the variable name.</p>
+
+    <h4>Basic Syntax for Declaring a Variable:</h4>
+    <pre><code>&lt;?php
+$variable_name = value;
+?&gt;
+</code></pre>
+    <p>For example, <code>$name = "Alice";</code> declares a variable named <code>$name</code> with the value <code>"Alice"</code>.</p>
+  </section>
+
+  <section>
+    <h3>Data Types in PHP</h3>
+    <p>PHP supports several data types that can be assigned to variables. The primary data types are:</p>
+    <ul>
+      <li>String</li>
+      <li>Integer</li>
+      <li>Float (floating-point numbers)</li>
+      <li>Boolean</li>
+      <li>Array</li>
+      <li>Object</li>
+      <li>NULL</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Examples of Data Types</h3>
+
+    <h4>1. String</h4>
+    <p>A string is a sequence of characters, typically used for text.</p>
+    <pre><code>&lt;?php
+$greeting = "Hello, World!";
+echo $greeting;
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> Hello, World!</p>
+
+    <h4>2. Integer</h4>
+    <p>An integer is a non-decimal number. PHP supports both positive and negative integers.</p>
+    <pre><code>&lt;?php
+$age = 30;
+echo $age;
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> 30</p>
+
+    <h4>3. Float</h4>
+    <p>A float, or floating-point number, is a number with a decimal point.</p>
+    <pre><code>&lt;?php
+$price = 9.99;
+echo $price;
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> 9.99</p>
+
+    <h4>4. Boolean</h4>
+    <p>A boolean represents two possible states: <code>true</code> or <code>false</code>.</p>
+    <pre><code>&lt;?php
+$is_logged_in = true;
+echo $is_logged_in; // Outputs 1 for true
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> 1 (true is represented as 1, and false as an empty string)</p>
+
+    <h4>5. Array</h4>
+    <p>An array can hold multiple values in a single variable. Arrays can be indexed or associative.</p>
+    <pre><code>&lt;?php
+$colors = array("red", "green", "blue");
+echo $colors[0]; // Outputs "red"
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> red</p>
+
+    <h4>6. NULL</h4>
+    <p>NULL is a special data type that represents a variable with no value.</p>
+    <pre><code>&lt;?php
+$x = null;
+var_dump($x);
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> NULL</p>
+  </section>
+
+  <section>
+    <h3>Using <code>var_dump()</code> to Check Data Types</h3>
+    <p>The <code>var_dump()</code> function is useful for checking the type and value of a variable. It outputs the data type as well as the value of the variable.</p>
+    <pre><code>&lt;?php
+$example = "PHP";
+var_dump($example); // Outputs: string(3) "PHP"
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> string(3) "PHP"</p>
+  </section>
+
+  <section>
+    <h3>Dynamic Typing in PHP</h3>
+    <p>PHP is a loosely typed language, meaning you don’t need to declare a variable’s data type. The type is assigned based on the value. For example, <code>$x = "Hello";</code> makes <code>$x</code> a string, but <code>$x = 10;</code> reassigns it as an integer.</p>
+  </section>
+
+</body>
+</html>

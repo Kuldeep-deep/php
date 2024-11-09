@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP String Handling</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>String Handling in PHP</h2>
+
+  <section>
+    <h3>What is String Handling?</h3>
+    <p>String handling refers to the manipulation of text in PHP. PHP provides a wide range of built-in functions for performing operations such as concatenation, substring extraction, case conversion, and searching within strings. Below are some of the most commonly used string functions in PHP.</p>
+  </section>
+
+  <section>
+    <h3>1. Concatenating Strings</h3>
+    <p>In PHP, you can concatenate strings using the <code>.</code> (dot) operator.</p>
+    <pre><code>&lt;?php
+$firstName = "John";
+$lastName = "Doe";
+$fullName = $firstName . " " . $lastName; // Concatenating strings
+echo $fullName; // Output: John Doe
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The dot operator (<code>.</code>) is used to combine two or more strings. In this example, the first name and last name are concatenated to form the full name.</p>
+  </section>
+
+  <section>
+    <h3>2. Finding the Length of a String</h3>
+    <p>To find the length of a string, use the <code>strlen()</code> function. It returns the number of characters in a string.</p>
+    <pre><code>&lt;?php
+$text = "Hello, world!";
+$length = strlen($text); // Returns 13
+echo "The length of the string is: " . $length;
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>strlen()</code> function calculates the length of the string, including spaces and punctuation.</p>
+  </section>
+
+  <section>
+    <h3>3. Converting Case</h3>
+    <p>PHP offers several functions for converting the case of strings:</p>
+
+    <h4>3.1. Converting to Uppercase</h4>
+    <pre><code>&lt;?php
+$lowercase = "hello";
+$uppercase = strtoupper($lowercase); // Converts to uppercase
+echo $uppercase; // Output: HELLO
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>strtoupper()</code> function converts all characters in a string to uppercase.</p>
+
+    <h4>3.2. Converting to Lowercase</h4>
+    <pre><code>&lt;?php
+$uppercase = "HELLO";
+$lowercase = strtolower($uppercase); // Converts to lowercase
+echo $lowercase; // Output: hello
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>strtolower()</code> function converts all characters in a string to lowercase.</p>
+
+    <h4>3.3. Capitalizing the First Letter</h4>
+    <pre><code>&lt;?php
+$sentence = "hello world";
+$capitalized = ucfirst($sentence); // Capitalizes the first letter
+echo $capitalized; // Output: Hello world
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>ucfirst()</code> function capitalizes the first letter of the string.</p>
+
+    <h4>3.4. Capitalizing Each Word</h4>
+    <pre><code>&lt;?php
+$sentence = "hello world";
+$capitalizedWords = ucwords($sentence); // Capitalizes each word
+echo $capitalizedWords; // Output: Hello World
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>ucwords()</code> function capitalizes the first letter of each word in the string.</p>
+  </section>
+
+  <section>
+    <h3>4. Searching Within a String</h3>
+    <p>PHP provides functions to search for substrings within a string:</p>
+
+    <h4>4.1. Searching for a Substring (Case-Sensitive)</h4>
+    <pre><code>&lt;?php
+$text = "Hello, world!";
+$position = strpos($text, "world"); // Finds the position of the word "world"
+echo "The word 'world' is found at position: " . $position; // Output: 7
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>strpos()</code> function finds the position of the first occurrence of a substring in a string. It returns the position of the substring (starting from 0), or <code>FALSE</code> if the substring is not found.</p>
+
+    <h4>4.2. Searching for a Substring (Case-Insensitive)</h4>
+    <pre><code>&lt;?php
+$text = "Hello, World!";
+$position = stripos($text, "world"); // Finds the position of "world" (case-insensitive)
+echo "The word 'world' is found at position: " . $position; // Output: 7
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>stripos()</code> function is similar to <code>strpos()</code>, but it performs a case-insensitive search.</p>
+  </section>
+
+  <section>
+    <h3>5. Extracting Substrings</h3>
+    <p>To extract parts of a string, you can use the following functions:</p>
+
+    <h4>5.1. Extracting a Substring by Position</h4>
+    <pre><code>&lt;?php
+$text = "Hello, world!";
+$substring = substr($text, 7, 5); // Extracts "world"
+echo $substring; // Output: world
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>substr()</code> function extracts a portion of the string starting from the specified position. The second argument specifies the length of the substring.</p>
+
+    <h4>5.2. Extracting from the End of a String</h4>
+    <pre><code>&lt;?php
+$text = "Hello, world!";
+$substring = substr($text, -6); // Extracts "world"
+echo $substring; // Output: world
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> If you provide a negative value as the starting position, <code>substr()</code> extracts the substring from the end of the string.</p>
+  </section>
+
+  <section>
+    <h3>6. Replacing Text Within a String</h3>
+    <p>To replace occurrences of a substring within a string, use the <code>str_replace()</code> function.</p>
+    <pre><code>&lt;?php
+$text = "Hello, world!";
+$newText = str_replace("world", "PHP", $text); // Replaces "world" with "PHP"
+echo $newText; // Output: Hello, PHP!
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>str_replace()</code> function replaces all occurrences of a substring in a string. In this example, "world" is replaced with "PHP".</p>
+  </section>
+
+  <section>
+    <h3>7. Removing Whitespace</h3>
+    <p>PHP provides functions to trim or remove whitespace from the beginning or end of a string:</p>
+
+    <h4>7.1. Trimming Whitespace from Both Ends</h4>
+    <pre><code>&lt;?php
+$text = "   Hello, world!   ";
+$trimmed = trim($text); // Removes whitespace from both ends
+echo $trimmed; // Output: Hello, world!
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>trim()</code> function removes whitespace (or other specified characters) from the beginning and end of a string.</p>
+
+    <h4>7.2. Trimming Whitespace from the Start</h4>
+    <pre><code>&lt;?php
+$text = "   Hello, world!";
+$leftTrimmed = ltrim($text); // Removes whitespace from the left side
+echo $leftTrimmed; // Output: Hello, world!
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>ltrim()</code> function removes whitespace from the left side of the string.</p>
+
+    <h4>7.3. Trimming Whitespace from the End</h4>
+    <pre><code>&lt;?php
+$text = "Hello, world!   ";
+$rightTrimmed = rtrim($text); // Removes whitespace from the right side
+echo $rightTrimmed; // Output: Hello, world!
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>rtrim()</code> function removes whitespace from the right side of the string.</p>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Examples & Exercises</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>PHP Examples & Exercises</h2>
+  
+  <section>
+    <h3>Example 1: Simple Calculator</h3>
+    <p>This is a basic example of a calculator that performs addition, subtraction, multiplication, and division.</p>
+    <pre><code>&lt;?php
+// Simple Calculator Example
+$num1 = 10;
+$num2 = 5;
+
+// Addition
+$sum = $num1 + $num2;
+echo "Sum: " . $sum . "&lt;br&gt;";
+
+// Subtraction
+$diff = $num1 - $num2;
+echo "Difference: " . $diff . "&lt;br&gt;";
+
+// Multiplication
+$product = $num1 * $num2;
+echo "Product: " . $product . "&lt;br&gt;";
+
+// Division
+$quotient = $num1 / $num2;
+echo "Quotient: " . $quotient . "&lt;br&gt;";
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> This example demonstrates basic arithmetic operations (addition, subtraction, multiplication, and division) in PHP using variables.</p>
+  </section>
+
+  <section>
+    <h3>Example 2: Checking Prime Numbers</h3>
+    <p>This example checks if a number is prime.</p>
+    <pre><code>&lt;?php
+// Check if a number is prime
+function isPrime($num) {
+    if ($num <= 1) {
+        return false;
+    }
+    for ($i = 2; $i <= sqrt($num); $i++) {
+        if ($num % $i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+$number = 7;
+if (isPrime($number)) {
+    echo $number . " is a prime number.";
+} else {
+    echo $number . " is not a prime number.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The function <code>isPrime()</code> checks if a given number is prime by dividing it by all numbers up to the square root of the number.</p>
+  </section>
+
+  <section>
+    <h3>Example 3: Fibonacci Sequence</h3>
+    <p>This example generates the first 10 numbers in the Fibonacci sequence.</p>
+    <pre><code>&lt;?php
+// Fibonacci Sequence
+function fibonacci($n) {
+    $sequence = [0, 1];
+    for ($i = 2; $i < $n; $i++) {
+        $sequence[] = $sequence[$i - 1] + $sequence[$i - 2];
+    }
+    return $sequence;
+}
+
+$numbers = fibonacci(10);
+echo "First 10 Fibonacci numbers: " . implode(", ", $numbers);
+?&gt;
+</code></pre>
+    <p><strong>Explanation:</strong> The <code>fibonacci()</code> function generates a sequence of Fibonacci numbers by starting with 0 and 1 and summing the last two numbers to generate the next one.</p>
+  </section>
+
+  <section>
+    <h3>Example 4: Simple Form Validation</h3>
+    <p>This example demonstrates simple form validation that checks whether the user has entered a name.</p>
+    <pre><code>&lt;?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    if (empty($name)) {
+        echo "Name is required.";
+    } else {
+        echo "Hello, " . htmlspecialchars($name) . "!";
+    }
+}
+?&gt;
+
+<form method="post" action="">
+    Name: <input type="text" name="name">
+    <input type="submit" value="Submit">
+</form>
+</code></pre>
+    <p><strong>Explanation:</strong> This form checks if the user has entered a name. If the field is empty, it displays a message saying "Name is required." Otherwise, it greets the user by their name.</p>
+  </section>
+
+  <section>
+    <h3>Exercise 1: Create a Temperature Converter</h3>
+    <p>Create a PHP program that converts temperatures between Celsius and Fahrenheit. The user should input a temperature and choose whether to convert from Celsius to Fahrenheit or vice versa.</p>
+    <p><strong>Hint:</strong> You can use the following formulas for conversion:
+      - Celsius to Fahrenheit: <code>F = (C * 9/5) + 32</code>
+      - Fahrenheit to Celsius: <code>C = (F - 32) * 5/9</code></p>
+    <p><strong>Challenge:</strong> Add a form to collect input and display the converted temperature.</p>
+  </section>
+
+  <section>
+    <h3>Exercise 2: Count Vowels in a String</h3>
+    <p>Create a PHP program that takes a string input and counts the number of vowels (a, e, i, o, u) in the string.</p>
+    <p><strong>Hint:</strong> Use <code>strtolower()</code> to make the string lowercase before checking for vowels.</p>
+  </section>
+
+  <section>
+    <h3>Exercise 3: Create a Simple Contact Form</h3>
+    <p>Create a PHP contact form that collects the user's name, email, and message. Upon submission, display a confirmation message along with the information the user entered.</p>
+    <p><strong>Hint:</strong> Use <code>$_POST</code> to collect the form data and <code>htmlspecialchars()</code> to safely display the input.</p>
+  </section>
+
+</body>
+</html>

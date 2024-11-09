@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Control Structures</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>Control Structures in PHP</h2>
+
+  <section>
+    <h3>What are Control Structures?</h3>
+    <p>Control structures are used to control the flow of a program based on different conditions and loops. PHP offers several types of control structures to handle conditional statements and loops.</p>
+  </section>
+
+  <section>
+    <h3>1. If-Else Statements</h3>
+    <p>The <code>if</code> statement executes code if a condition is true. The <code>else</code> statement executes code if the condition is false, and <code>elseif</code> allows for multiple conditions.</p>
+    <pre><code>&lt;?php
+$age = 20;
+
+if ($age &gt;= 18) {
+    echo "You are an adult.";
+} elseif ($age &gt;= 13) {
+    echo "You are a teenager.";
+} else {
+    echo "You are a child.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> You are an adult.</p>
+  </section>
+
+  <section>
+    <h3>2. Switch Statement</h3>
+    <p>The <code>switch</code> statement is an alternative to <code>if</code> for checking multiple possible values of a single variable.</p>
+    <pre><code>&lt;?php
+$day = "Wednesday";
+
+switch ($day) {
+    case "Monday":
+        echo "Start of the work week!";
+        break;
+    case "Wednesday":
+        echo "It's midweek!";
+        break;
+    case "Friday":
+        echo "Almost the weekend!";
+        break;
+    default:
+        echo "Just another day.";
+}
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> It's midweek!</p>
+  </section>
+
+  <section>
+    <h3>3. For Loop</h3>
+    <p>The <code>for</code> loop is used to run a block of code a specific number of times, ideal when the iteration count is known in advance.</p>
+    <pre><code>&lt;?php
+for ($i = 1; $i &lt;= 5; $i++) {
+    echo "Number: " . $i . "&lt;br&gt;";
+}
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Number: 1<br>Number: 2<br>Number: 3<br>Number: 4<br>Number: 5</p>
+  </section>
+
+  <section>
+    <h3>4. While Loop</h3>
+    <p>The <code>while</code> loop repeats code as long as a condition is true. It's useful when the number of iterations is not predetermined.</p>
+    <pre><code>&lt;?php
+$count = 1;
+
+while ($count &lt;= 3) {
+    echo "Count is: " . $count . "&lt;br&gt;";
+    $count++;
+}
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Count is: 1<br>Count is: 2<br>Count is: 3</p>
+  </section>
+
+  <section>
+    <h3>5. Do-While Loop</h3>
+    <p>The <code>do-while</code> loop is similar to <code>while</code>, but it guarantees at least one execution of the loop, as the condition is checked after the code block runs.</p>
+    <pre><code>&lt;?php
+$count = 1;
+
+do {
+    echo "Count is: " . $count . "&lt;br&gt;";
+    $count++;
+} while ($count &lt;= 3);
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Count is: 1<br>Count is: 2<br>Count is: 3</p>
+  </section>
+
+  <section>
+    <h3>6. Foreach Loop</h3>
+    <p>The <code>foreach</code> loop is specifically designed for looping through arrays. It runs a block of code for each element in an array.</p>
+    <pre><code>&lt;?php
+$colors = array("red", "green", "blue");
+
+foreach ($colors as $color) {
+    echo "Color: " . $color . "&lt;br&gt;";
+}
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Color: red<br>Color: green<br>Color: blue</p>
+  </section>
+
+</body>
+</html>

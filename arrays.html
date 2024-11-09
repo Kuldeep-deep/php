@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Arrays</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>Arrays in PHP</h2>
+
+  <section>
+    <h3>What are Arrays?</h3>
+    <p>Arrays are used to store multiple values in a single variable. In PHP, arrays can hold multiple values of different types, such as strings, integers, or other arrays. Arrays help organize data and make it easier to manage.</p>
+  </section>
+
+  <section>
+    <h3>1. Indexed Arrays</h3>
+    <p>Indexed arrays use numeric indices to access values. By default, PHP assigns indices starting from 0.</p>
+    <pre><code>&lt;?php
+$fruits = array("Apple", "Banana", "Cherry");
+echo $fruits[0]; // Outputs: Apple
+echo $fruits[1]; // Outputs: Banana
+echo $fruits[2]; // Outputs: Cherry
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> Apple Banana Cherry</p>
+  </section>
+
+  <section>
+    <h3>2. Associative Arrays</h3>
+    <p>Associative arrays use named keys instead of numeric indices. You can define your own keys, which are more descriptive.</p>
+    <pre><code>&lt;?php
+$person = array("name" => "John", "age" => 30, "city" => "New York");
+echo $person["name"]; // Outputs: John
+echo $person["age"];  // Outputs: 30
+echo $person["city"]; // Outputs: New York
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> John 30 New York</p>
+  </section>
+
+  <section>
+    <h3>3. Multidimensional Arrays</h3>
+    <p>Multidimensional arrays are arrays containing one or more arrays. These are useful for storing complex data, like a table of values.</p>
+    <pre><code>&lt;?php
+$students = array(
+    array("John", 20, "A"),
+    array("Jane", 22, "B"),
+    array("Doe", 21, "C")
+);
+echo $students[0][0]; // Outputs: John
+echo $students[1][1]; // Outputs: 22
+echo $students[2][2]; // Outputs: C
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong> John 22 C</p>
+  </section>
+
+  <section>
+    <h3>4. Looping through Arrays</h3>
+    <p>To loop through arrays, you can use different loops such as <code>foreach</code>, <code>for</code>, or <code>while</code>. The <code>foreach</code> loop is especially useful for iterating over arrays.</p>
+    <pre><code>&lt;?php
+$colors = array("Red", "Green", "Blue");
+
+foreach ($colors as $color) {
+    echo $color . "&lt;br&gt;";
+}
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Red<br>Green<br>Blue</p>
+  </section>
+
+  <section>
+    <h3>5. Array Functions</h3>
+    <p>PHP provides many built-in functions for working with arrays. These functions can be used for sorting, merging, filtering, and more. Here are some examples:</p>
+
+    <h4>Sorting an Array</h4>
+    <pre><code>&lt;?php
+$numbers = array(4, 2, 8, 6);
+sort($numbers); // Sorts the array in ascending order
+print_r($numbers); // Prints the sorted array
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Array ( [0] => 2 [1] => 4 [2] => 6 [3] => 8 )</p>
+
+    <h4>Array Merging</h4>
+    <pre><code>&lt;?php
+$array1 = array("Apple", "Banana");
+$array2 = array("Cherry", "Date");
+$mergedArray = array_merge($array1, $array2); // Merges two arrays
+print_r($mergedArray); // Prints the merged array
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Array ( [0] => Apple [1] => Banana [2] => Cherry [3] => Date )</p>
+
+    <h4>Array Filter</h4>
+    <pre><code>&lt;?php
+$numbers = array(1, 2, 3, 4, 5, 6);
+$evenNumbers = array_filter($numbers, function($num) {
+    return $num % 2 == 0;
+});
+print_r($evenNumbers); // Filters even numbers
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Array ( [1] => 2 [3] => 4 [5] => 6 )</p>
+  </section>
+
+  <section>
+    <h3>6. Adding and Removing Elements</h3>
+    <p>You can add or remove elements from an array using functions like <code>array_push()</code>, <code>array_pop()</code>, <code>array_shift()</code>, and <code>array_unshift()</code>.</p>
+
+    <h4>Adding an Element</h4>
+    <pre><code>&lt;?php
+$fruits = array("Apple", "Banana");
+array_push($fruits, "Cherry"); // Adds "Cherry" to the end
+print_r($fruits);
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Array ( [0] => Apple [1] => Banana [2] => Cherry )</p>
+
+    <h4>Removing an Element</h4>
+    <pre><code>&lt;?php
+array_pop($fruits); // Removes the last element
+print_r($fruits);
+?&gt;
+</code></pre>
+    <p><strong>Output:</strong><br>Array ( [0] => Apple [1] => Banana )</p>
+  </section>
+
+</body>
+</html>
